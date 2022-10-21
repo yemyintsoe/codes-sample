@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>add & remove inputs using jQuery</title>
+</head>
+<body>
+    <div id="parentDiv">
+    </div>
+    <button type="button" id="addMoreBtn"> + Add More </button>
+
+    <script>
+        // Add & Remove Input
+        $(document).ready(function(){
+            $('#addMoreBtn').click(function(){
+                $('#parentDiv').append('<div class="row no-gutters"><div class="col-md-2"><div class="form-group"><input type="text" name="part[]" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><input type="text" name="defectiveNo[]" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><input type="text" name="defectiveSN[]" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><input type="text" name="replacedNo[]" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><input type="text" name="replacedSN[]" class="form-control"></div></div><div class="col-md-2"><div class="form-group"><input type="text" name="part_issue_remark[]" class="form-control"></div></div><button type="button" class="removeBtn btn btn-secondary btn-sm"> - Remove</button></div>');
+            });
+
+            $('#parentDiv').on('click', '.removeBtn', function(){
+                $(this).parent().remove();
+            });
+        });
+    </script>
+</body>
+</html>
