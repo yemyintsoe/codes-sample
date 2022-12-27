@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      #editor-wrapper-left .ck.ck-editor__top.ck-reset_all, #editor-wrapper-right .ck.ck-editor__top.ck-reset_all {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div style="display: flex; width: 100%">
+      <div id="editor-wrapper-left" style="width: 49%">
+        <label style="font-weight: 600; font-size: 18px; margin-bottom: 10px"
+        >Type Here</label
+      >
+        <textarea id="editor" placeholder="Enter text"></textarea>
+      </div>
+      <div id="editor-wrapper-right" style="width: 49%; margin: 0 0 0 20px">
+        <label style="font-weight: 600; font-size: 18px; margin-bottom: 10px"
+          >User WebAPP View</label
+        >
+        <textarea id="editor-right" placeholder="Appear text here">
+        </textarea>
+      </div>
+    </div>
+    <script src="https://cdn.ckeditor.com/ckeditor5/35.4.0/classic/ckeditor.js"></script>
+    <script>
+      let leftEditor = document.querySelector("#editor");
+
+      ClassicEditor.create(leftEditor)
+      .then(lEditor => {
+        lEditor.model.document.on('change:data', () => {
+          document.querySelector('#editor-wrapper-left .ck.ck-editor__top.ck-reset_all').style.display = 'block'
+          rightEditor.setData(lEditor.getData())
+        } );
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+
+      var rightEditor;
+      ClassicEditor.create(document.querySelector("#editor-right"))
+      .then(rEditor => {
+        rightEditor = rEditor
+      })
+      .catch(
+        (error) => {
+          console.error(error);
+        }
+      );
+
+    </script>
+  </body>
+</html>
